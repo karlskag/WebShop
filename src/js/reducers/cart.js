@@ -32,22 +32,25 @@ state = {
 const itemChange = (type, cart, productId) => {
   switch (type) {
     case 'ADD_TO_CART':
-    if (cart.items.indexOf(productId) !== -1) return cart.items
-    return [
-      ...cart.items,
-      productId
-    ]
+      if (cart.items.indexOf(productId) !== -1) return cart.items
+      return [
+        ...cart.items,
+        productId
+      ]
     case 'REMOVE_FROM_CART':
-    return cart.items.filter((i) => i !== productId)
+      return cart.items.filter((i) => i !== productId)
   }
 }
 
-const cart = (state = {}, action) => {
+const cart = (state = { cart: { items: [] } }, action) => {
+  console.log(state);
   switch (action.type) {
     case 'ADD_TO_CART':
     case 'REMOVE_FROM_CART':
       return Object.assign({}, state, {
-        cart: itemsChange(action.type, state.cart, action.productId)
+        cart: Object.assign({}, state.cart, {
+          items: itemChange(action.type, state.cart, action.productId)
+        })
       })
     default:
       return state

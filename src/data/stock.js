@@ -10,13 +10,13 @@ const stock = {
       id: 2,
       price: 150,
       name: 'Stan Smith',
-      desc: 'Yes boi!'
+      desc: 'This timeless classic, will keep you walking'
     },
     {
       id: 3,
       price: 400,
-      name: 'Gucci soul',
-      desc: 'Only the best'
+      name: 'Gucci Ace',
+      desc: 'Only the best for your feet'
     }
   ],
   quantity: {

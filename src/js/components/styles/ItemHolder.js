@@ -4,7 +4,8 @@ export default {
   justifyContent: 'space-around',
   fontFamily: 'Avenir-Black',
   fontSize: 40,
-  color: 'black',
+  color: '#373737',
   maxWidth: '70%',
   backgroundColor: '#f6c93c',
+
 }

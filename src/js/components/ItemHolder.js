@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './styles/ItemHolder';
+import Item from './Item';
 
-const ItemHolder = ({products}) => (
-  <div style={styles}>
+const ItemHolder = ({products, onAddToCartClick}) => (
+    <div style={styles}>
     {products.map(prod => (
-      <div style={{margin:20}} key={prod.id}>{prod.name}</div>
+      <Item key={prod.id} product={prod} onClick={onAddToCartClick}/>
     ))}
   </div>
-  // products.map(prod => <div key={prod.id} style={styles}> { prod.name } </div>)
 )
 
 export default ItemHolder
