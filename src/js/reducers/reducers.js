@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import cart from './cart'
 import details from './details'
-import products from './products'
+import stock from './stock'
 
 const webShop = combineReducers({
   cart,
-  products
+  stock
 })
 
 export default webShop;

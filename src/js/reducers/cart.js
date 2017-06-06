@@ -1,35 +1,4 @@
-//Hur ska statet se ut??
-/*
-state = {
-  cart: {
-    items: [1,2,3]
-    quantity: {
-      1: 2,
-      2: 1,
-      3: 1
-    }
-  },
-  stock: {
-    products: [
-        1 : {
-        id: 1,
-        price: 299,
-        name: 'Nike Air',
-        desc: 'These shoes are fly fo sho'
-      },
-      ...
-    ]
-    quantity: {
-      1: 4,
-      2: 3,
-      3: 2
-    }
-  }
-}
-*/
-
-
-const itemChange = (type, cart, productId) => {
+const addProductIDToCart = (type, cart, productId) => {
   switch (type) {
     case 'ADD_TO_CART':
       if (cart.items.indexOf(productId) !== -1) return cart.items
@@ -42,15 +11,27 @@ const itemChange = (type, cart, productId) => {
   }
 }
 
-const cart = (state = { cart: { items: [] } }, action) => {
-  console.log(state);
+const adjustQuantityForID = (type, cart, productId) => {
+  switch(type) {
+    case 'ADD_TO_CART':
+      const prevQuant = cart.quantity[productId];
+      const newQuant = prevQuant ? prevQuant + 1 : 1;
+      return Object.assign({}, cart.quantity, {
+        [productId]: newQuant
+      })
+    case 'REMOVE_FROM_CART':
+    default:
+      return state
+  }
+}
+
+const cart = (state = { items: [], quantity: {} }, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
     case 'REMOVE_FROM_CART':
       return Object.assign({}, state, {
-        cart: Object.assign({}, state.cart, {
-          items: itemChange(action.type, state.cart, action.productId)
-        })
+        items: addProductIDToCart(action.type, state, action.productId),
+        quantity: adjustQuantityForID(action.type, state, action.productId)
       })
     default:
       return state

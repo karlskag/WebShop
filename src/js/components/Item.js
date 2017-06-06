@@ -2,7 +2,7 @@ import React from 'react';
 import AddButton from './AddButton';
 import { root, desc } from './styles/Item';
 
-const Item = ({product, onClick}) => (
+const Item = ({product, quantity, onClick}) => (
   <div>
     <div style={root}>
       {product.name}
@@ -10,7 +10,7 @@ const Item = ({product, onClick}) => (
         {product.desc}<br />
         ${product.price}
       </div>
-      <AddButton onClick={() => onClick(product.id)} stock={1} />
+      <AddButton onClick={() => onClick(product.id)} quantity={quantity} />
     </div>
   </div>
 )

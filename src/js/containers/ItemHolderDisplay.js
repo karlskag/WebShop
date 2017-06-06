@@ -4,8 +4,8 @@ import { addToCart } from '../actions/index';
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products,
-    cart: state.cart
+    products: state.stock.products,
+    quantity: state.stock.quantity,
   }
 }
 
