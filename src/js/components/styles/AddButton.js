@@ -21,9 +21,21 @@ const disabled = {
   opacity: 0.5
 }
 
+const pressed = {
+  border: 'solid',
+  borderColor: '#373737',
+  borderWidth: 2,
+  backgroundColor: '#8c8c8c',
+  color: '#f6c93c',
+  position: 'absolute',
+  bottom: 2,
+  right: 2
+}
+
 const style = {
   ok,
-  disabled
+  disabled,
+  pressed
 }
 
 export default style;

@@ -15,9 +15,14 @@ const quantity = {
   fontSize: 30
 }
 
+const link = {
+  color: '#373737'
+}
+
 const style = {
   root,
-  quantity
+  quantity,
+  link
 }
 
 export default style;

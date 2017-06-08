@@ -1,12 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import styles from './styles/ShoppingCart';
 import { values } from 'lodash';
 
-const ShoppingCart = ({ /*items,*/ quantity }) => {
+const ShoppingCart = ({ quantity }) => {
   return (
     <div style={styles.root}>
-      <FontAwesome name='shopping-cart' />
+      <Link to={`/cart`} style={styles.link}>
+        <FontAwesome name='shopping-cart' />
+      </Link>
       <span style={styles.quantity}>{ values(quantity).reduce((a, b) => a + b, 0) } items in cart</span>
     </div>
   )
