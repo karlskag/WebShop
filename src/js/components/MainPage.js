@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './styles/MainPage';
 import ItemHolderDisplay from '../containers/ItemHolderDisplay';
-import ShoppingCartDisplay from '../containers/ShoppingCartDisplay';
+import ShoppingCartPreviewDisplay from '../containers/ShoppingCartPreviewDisplay';
 
 export default () => (
   <div style={styles}>
     WEBSHOP
-    <ShoppingCartDisplay />
+    <ShoppingCartPreviewDisplay />
     <ItemHolderDisplay />
   </div>
 )

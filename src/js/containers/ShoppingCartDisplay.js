@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import ShoppingCart from '../components/ShoppingCart';
+import { removeFromCart, decrementQuantityInCart } from '../actions/index';
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     items: state.cart.items,
     quantity: state.cart.quantity
@@ -10,7 +10,14 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispachToProps = (dispach) => {
-  return {}
+  return {
+    onRemoveFromCartClick: (id) => {
+      dispach(removeFromCart(id, state.cart.quantity[id]))
+    },
+    onDecrementQuantityClick: (id) => {
+      dispach(decrementQuantityInCart(id))
+    }
+  }
 }
 
 const ShoppingCartDisplay = connect(

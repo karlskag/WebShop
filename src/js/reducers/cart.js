@@ -1,4 +1,6 @@
-const addProductIDToCart = (type, cart, productId) => {
+import { omit } from 'lodash';
+
+const adjustProductInCart = (type, cart, productId) => {
   switch (type) {
     case 'ADD_TO_CART':
       if (cart.items.indexOf(productId) !== -1) return cart.items
@@ -8,6 +10,11 @@ const addProductIDToCart = (type, cart, productId) => {
       ]
     case 'REMOVE_FROM_CART':
       return cart.items.filter((i) => i !== productId)
+    case 'DECREMENT_QUANTITY_IN_CART':
+      if (cart.quantity[productId] === 1) return cart.items.filter((i) => i !== productId)
+      return state
+    default:
+      return state
   }
 }
 
@@ -20,6 +27,12 @@ const adjustQuantityForID = (type, cart, productId) => {
         [productId]: newQuant
       })
     case 'REMOVE_FROM_CART':
+      return omit(cart.quantity, [productId])
+    case 'DECREMENT_QUANTITY_IN_CART':
+      if (cart.quantity[productId] === 1) return omit(cart.quantity, [productId])
+      return Object.assign({}, cart.quantity, {
+        [productId]: cart.quantity[productId] + 1
+      })
     default:
       return state
   }
@@ -29,8 +42,9 @@ const cart = (state = { items: [], quantity: {} }, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
     case 'REMOVE_FROM_CART':
+    case 'DECREMENT_QUANTITY_IN_CART':
       return Object.assign({}, state, {
-        items: addProductIDToCart(action.type, state, action.productId),
+        items: adjustProductInCart(action.type, state, action.productId),
         quantity: adjustQuantityForID(action.type, state, action.productId)
       })
     default:

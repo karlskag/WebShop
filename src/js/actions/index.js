@@ -8,6 +8,14 @@ export const addToCart = (productId) => {
 export const removeFromCart = (productId) => {
   return {
     type: 'REMOVE_FROM_CART',
+    productId,
+    quantity
+  }
+}
+
+export const decrementQuantityInCart = (productId) => {
+  return {
+    type: 'DECREMENT_QUANTITY_IN_CART',
     productId
   }
 }
