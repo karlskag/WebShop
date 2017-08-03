@@ -5,7 +5,7 @@ import ShoppingCartPreviewDisplay from '../containers/ShoppingCartPreviewDisplay
 
 export default () => (
   <div style={styles}>
-    WEBSHOP
+    SHOP
     <ShoppingCartPreviewDisplay />
     <ItemHolderDisplay />
   </div>

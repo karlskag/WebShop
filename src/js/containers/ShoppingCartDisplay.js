@@ -4,7 +4,7 @@ import { removeFromCart, decrementQuantityInCart } from '../actions/index';
 
 const mapStateToProps = (state) => {
   return {
-    items: state.cart.items,
+    items: extractItemInformationFromCart(state.cart.items, state.stock.products),
     quantity: state.cart.quantity
   }
 }
@@ -18,6 +18,12 @@ const mapDispachToProps = (dispach) => {
       dispach(decrementQuantityInCart(id))
     }
   }
+}
+
+function extractItemInformationFromCart(itemIDs, products) {
+  return itemIDs.map(id => {
+    return products.find(p => p.id === id);
+  })
 }
 
 const ShoppingCartDisplay = connect(
