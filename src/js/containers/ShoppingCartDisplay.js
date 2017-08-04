@@ -11,8 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispachToProps = (dispach) => {
   return {
-    onRemoveFromCartClick: (id) => {
-      dispach(removeFromCart(id, state.cart.quantity[id]))
+    onRemoveFromCartClick: (id, quantity) => {
+      dispach(removeFromCart(id, quantity))
     },
     onDecrementQuantityClick: (id) => {
       dispach(decrementQuantityInCart(id))

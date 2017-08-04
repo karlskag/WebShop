@@ -12,9 +12,9 @@ const adjustProductInCart = (type, cart, productId) => {
       return cart.items.filter((i) => i !== productId)
     case 'DECREMENT_QUANTITY_IN_CART':
       if (cart.quantity[productId] === 1) return cart.items.filter((i) => i !== productId)
-      return state
+      return cart.items
     default:
-      return state
+      return cart.items
   }
 }
 
@@ -27,14 +27,14 @@ const adjustQuantityForID = (type, cart, productId) => {
         [productId]: newQuant
       })
     case 'REMOVE_FROM_CART':
-      return omit(cart.quantity, [productId])
+      return omit(cart.quantity, productId)
     case 'DECREMENT_QUANTITY_IN_CART':
-      if (cart.quantity[productId] === 1) return omit(cart.quantity, [productId])
+      if (cart.quantity[productId] === 1) return omit(cart.quantity, productId)
       return Object.assign({}, cart.quantity, {
-        [productId]: cart.quantity[productId] + 1
+        [productId]: cart.quantity[productId] - 1
       })
     default:
-      return state
+      return cart.quantity
   }
 }
 
@@ -43,10 +43,11 @@ const cart = (state = { items: [], quantity: {} }, action) => {
     case 'ADD_TO_CART':
     case 'REMOVE_FROM_CART':
     case 'DECREMENT_QUANTITY_IN_CART':
-      return Object.assign({}, state, {
+      let a = Object.assign({}, state, {
         items: adjustProductInCart(action.type, state, action.productId),
         quantity: adjustQuantityForID(action.type, state, action.productId)
       })
+      return a;
     default:
       return state
   }

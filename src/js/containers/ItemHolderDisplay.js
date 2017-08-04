@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
   return {
     products: state.stock.products,
     quantity: state.stock.quantity,
+
   }
 }
 

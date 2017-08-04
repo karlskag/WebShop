@@ -6,7 +6,7 @@ const adjustQuantityForID = (type, stock, productId, numberRemoved = 0) => {
       })
     case 'REMOVE_FROM_CART':
       return Object.assign({}, stock.quantity, {
-        [productId]: numberRemoved
+        [productId]: stock.quantity[productId] + numberRemoved
       })
     case 'DECREMENT_QUANTITY_IN_CART':
       return Object.assign({}, stock.quantity, {
